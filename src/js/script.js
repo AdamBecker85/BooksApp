@@ -4,7 +4,8 @@
   const select = {
     templateOfBook: '#template-book',
     listOfBooks: '.books-list',
-    bookImage: '.book__image',
+    bookImage: '.books-list .book__image',
+    
   };
 
   const templates = {
@@ -27,10 +28,11 @@
   const favoriteBooks = [];
 
   function initActions(){
-    debugger;
-    const clickableBookImages = document.querySelector(select.bookImage);
     
-    for(let imagee in clickableBookImages){
+    const clickableBookImages = document.querySelectorAll(select.bookImage);
+    console.log(clickableBookImages);
+    
+    for(let imagee of clickableBookImages){
 
       imagee.addEventListener('dblclick', function(event){
         event.preventDefault();
@@ -41,7 +43,7 @@
     }
        
   }
-  
-  
+
+  initActions();  
 
 }
