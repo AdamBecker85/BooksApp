@@ -33,14 +33,20 @@
     console.log(clickableBookImages);
     
     for(let imagee of clickableBookImages){
-
+      
       imagee.addEventListener('dblclick', function(event){
-        event.preventDefault();
-        imagee.classList.add('favorite');
         const dataID = imagee.getAttribute('data-id');
-        favoriteBooks.push(dataID);
-      });
-    }
+        if(imagee.classList.contains('favorite')){
+          imagee.classList.remove('favorite');
+          favoriteBooks.splice(favoriteBooks.indexOf(dataID),1);
+        } else {
+          event.preventDefault();
+          imagee.classList.add('favorite');
+          favoriteBooks.push(dataID);
+          console.log(favoriteBooks);
+          }
+        });
+    }    
        
   }
 
