@@ -28,7 +28,7 @@
   const favoriteBooks = [];
 
   function initActions(){
-    //debugger;
+    
     const clickableBookImages = document.querySelectorAll(select.bookImage);
     console.log(clickableBookImages);
     
@@ -36,7 +36,7 @@
       event.preventDefault();
       const clickedElement = event.target.offsetParent;
       
-      if(clickedElement.classList.contains('.book__image')){
+      if(clickedElement.classList.contains('book__image')){
         
         const dataID = clickedElement.getAttribute('data-id');
 
