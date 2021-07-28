@@ -7,6 +7,7 @@
     bookImage: '.books-list .book__image',
     filters: '.filters',
     
+    
   };
 
   const templates = {
@@ -20,6 +21,14 @@
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
       const bookToShow = document.querySelector(select.listOfBooks);
       bookToShow.appendChild(generatedDOM);
+      
+      const ratingBgc = determineRatingBgc(book.rating);
+      console.log(ratingBgc);
+
+      const ratingWidth = book.rating*10;
+      console.log(ratingWidth);
+
+     
     }
         
   }
@@ -99,6 +108,21 @@
         book.classList.remove('hidden');
       }
 
+    }
+  }
+
+  function determineRatingBgc(rating){
+    if (rating < 6){
+      return 'linear-gradient(to bottom,  #fefcea 0%, #f1da36 100%)';
+    }
+    if(rating > 6 && rating <= 8){
+      return 'linear-gradient(to bottom, #b4df5b 0%,#b4df5b 100%)';
+    }
+    if(rating > 8 && rating <= 9){
+      return 'linear-gradient(to bottom, #299a0b 0%, #299a0b 100%)';
+    }
+    if(rating > 9){
+      return 'linear-gradient(to bottom, #ff0084 0%,#ff0084 100%)';
     }
   }
 
