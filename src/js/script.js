@@ -5,6 +5,7 @@
     templateOfBook: '#template-book',
     listOfBooks: '.books-list',
     bookImage: '.books-list .book__image',
+    filters: '.filters',
     
   };
 
@@ -26,6 +27,7 @@
   render();
 
   const favoriteBooks = [];
+  const filters = [];
 
   function initActions(){
     
@@ -50,9 +52,54 @@
         
       }
     });
+
+    document.querySelector(select.filters).addEventListener('click', function(event){
+      const clickedElement = event.target;
+
+      if(clickedElement.tagName=='INPUT'
+        &&clickedElement.getAttribute('type')=='checkbox'
+        &&clickedElement.getAttribute('name')=='filter'){
+        console.log(clickedElement.value);
+        if(clickedElement.checked){
+          filters.push(clickedElement.value);
+          console.log(filters);
+        } else {
+          filters.splice(filters.indexOf(clickedElement.value),1);
+          console.log(filters);
+        }
+      }
+
+      filterBooks();
+
+    });
         
   }
+  
+  initActions(); 
+  
+  function filterBooks(){
+    for (let filteredBook of dataSource.books){
 
-  initActions();  
+      let shouldBeHidden = false;
+
+      for (let filter of filters){
+
+        if(!filteredBook.details[filter]){
+          shouldBeHidden = true;
+          break;
+        }
+
+      }
+
+      const book = document.querySelector('.book__image[data-id= "'  + filteredBook.id + '"]');
+
+      if(shouldBeHidden == true){
+        book.classList.add('hidden');
+      } else {
+        book.classList.remove('hidden');
+      }
+
+    }
+  }
 
 }
