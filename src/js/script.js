@@ -55,7 +55,7 @@
       const clickableBookImages = document.querySelectorAll(select.bookImage);
       console.log(clickableBookImages);
       
-      document.querySelector(select.listOfBooks).addEventListener('dblclick', function(event){
+      document.querySelector(select.listOfBooks).addEventListener('dblclick', (event) => {
         event.preventDefault();
         const clickedElement = event.target.offsetParent;
         
@@ -74,7 +74,7 @@
         }
       });
 
-      document.querySelector(select.filters).addEventListener('click', function(event){
+      document.querySelector(select.filters).addEventListener('click', (event) => {
         const clickedElement = event.target;
 
         if(clickedElement.tagName=='INPUT'
@@ -97,7 +97,7 @@
     }
   
     filterBooks(){
-      for (let filteredBook of dataSource.books){
+      for (let filteredBook of this.data){
 
         let shouldBeHidden = false;
 
@@ -137,7 +137,7 @@
     }
 
   }
-
+  // eslint-disable-next-line
   const app = new BooksList();
 
 }
